@@ -32,7 +32,7 @@ Open your `.env` file and set your `GIPHY` token
 ```
 
 ### Daily usage
-After you are in sync with `origin/main` Then you can run
+After you are in sync with `origin/master` Then you can run
 Inside the shell you can run typical artisan commands like:
 ```sh
 php artisan migrate --seed
