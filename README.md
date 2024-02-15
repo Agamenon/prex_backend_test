@@ -26,6 +26,11 @@ vendor/bin/sail shell
 php artisan migrate --seed
 php artisan db:seed UserSeeder
 ```
+Open your `.env` file and set your `GIPHY` token
+```shell
+    GIPHY_API_TOKEN = "APITOKEN"
+```
+
 ### Daily usage
 After you are in sync with `origin/main` Then you can run
 Inside the shell you can run typical artisan commands like:

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SearchGIFController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,9 @@ Route::group(
         $router->post('/auth/sign_in', [LoginController::class, 'login'])->name('user.login');
 
         $router->group(['middleware' => ['auth:sanctum', 'throttle:api']], function () use ($router) {
-
+            $router->get("gif",[SearchGIFController::class,'index'])->name('gif.index');
+            $router->get("gif/{id}", [SearchGIFController::class, 'show'])->name('gif.show');
+            $router->post("gif", [SearchGIFController::class, 'store'])->name('gif.store');
         });
 
 });
