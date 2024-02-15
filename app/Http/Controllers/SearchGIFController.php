@@ -6,9 +6,8 @@ use App\Http\Requests\GifStoreRequest;
 use App\Http\Requests\SearchByQueryRequest;
 use App\Models\FavoriteGif;
 use App\Services\GIFSearcherI;
-use App\Services\GIPHYClient;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Spatie\Activitylog\Models\Activity;
 
 class SearchGIFController extends Controller
 {
@@ -37,5 +36,17 @@ class SearchGIFController extends Controller
     {
         $response = $client->searchById($id);
         return response()->json($response);
+    }
+
+    /**
+     * Audit User Activity
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function audit()
+    {
+        $activities = Activity::all();
+
+        return response()->json($activities);
     }
 }

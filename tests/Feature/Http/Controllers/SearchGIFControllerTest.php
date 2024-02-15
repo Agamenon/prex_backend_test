@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Sanctum\Sanctum;
+use Spatie\Activitylog\Models\Activity;
 use Tests\TestCase;
 
 class SearchGIFControllerTest extends TestCase
@@ -95,5 +96,19 @@ class SearchGIFControllerTest extends TestCase
         $response = $this->post(route('gif.store'), $gif->toArray());
 
         $response->assertInvalid(['user_id']);
+    }
+
+    /**
+     * A basic feature test example.
+     */
+    public function test_search_gif_audit(): void
+    {
+        $response = $this->get(route('gif.index', ['query' => 'cat', 'limit' => 2]));
+
+        $response->assertStatus(200)->assertJsonCount(2);
+
+        $response = $this->get(route('gif.audit'));
+
+        $response->assertStatus(200)->assertJsonCount(1);
     }
 }
