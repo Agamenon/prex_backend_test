@@ -29,6 +29,7 @@ php artisan db:seed UserSeeder
 Open your `.env` file and set your `GIPHY` token
 ```shell
     GIPHY_API_TOKEN = "APITOKEN"
+    GIPHY_API_URL = "api.giphy.com/v1/gifs/search"
 ```
 
 ### Daily usage
